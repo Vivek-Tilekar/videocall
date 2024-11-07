@@ -24,8 +24,28 @@ io.on("connection", (socket) => {
 
     socket.on("call:accepted", ({to, ans}) => {
         io.to(to).emit('call:accepted', {from: socket.id, ans})
-    })
+    });
+
+
+    socket.on("peer:nego:needed", ({to, offer}) => {
+        io.to(to).emit('peer:nego:needed', {from: socket.id, offer})
+    });
+
+    socket.on("peer:nego:done", ({to, ans}) => {
+        io.to(to).emit('peer:nego:final', {from: socket.id, ans})
+    });
 });
 
 
+
+
+
+
+
+
+
+
+
 // https://youtu.be/ZDiQWv-hjtw?si=al7lC821sOXCmFqS&t=1761
+// https://youtu.be/ZDiQWv-hjtw?si=JWtRepdJBD2-PK-A&t=3114
+// https://youtu.be/ZDiQWv-hjtw?si=aPc1NEoo47bxkVay&t=3857
